@@ -1,4 +1,5 @@
 from django.http import HttpResponseRedirect, HttpResponse
+from django.shortcuts import render
 from django.template import loader
 from django.views import generic
 from django.views.generic import CreateView, UpdateView
@@ -30,7 +31,8 @@ def home(request):
         "resource_form": resource_form
     }
 
-    return HttpResponse(template.render(context, request))
+    #return HttpResponse(template.render(context, request))
+    return render(request, 'home.html')
     #return HttpResponse(resource_list)
 
 
@@ -54,4 +56,4 @@ class ResourceUpdate(UpdateView):
 
 def calendar(request):
     context = 'Calendar'
-    return HttpResponse(context)
+    return render(request, 'calendar.html', {})
