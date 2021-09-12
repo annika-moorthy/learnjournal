@@ -1,11 +1,4 @@
 
-{#this is the save button on the home page, which we dont need#}
-{#<form method="POST">#}
-{#    {% csrf_token %}#}
-{#    {{  resource_form.as_p}}#}
-{#<input type = "submit" value="Save">#}
-{#</form>#}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,9 +36,9 @@
 
         <form method="GET" action="/search/">
         <div class="form-group">
-            <input type="text" class="form-control" name="search" placeholder="Search">
+            <input type="text" class="form-control" name="q" placeholder="Search">
         </div>
-        <button type="submit" class="btn btn-light">Submit</button>
+        <button type="submit" class="btn btn-light">Search</button>
         </form>
 
         {% if resources %}

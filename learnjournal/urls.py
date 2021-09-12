@@ -22,5 +22,6 @@ urlpatterns = [
     path('', views.home, name='index'),
     #path('add/'), views.add_resource, name='add'),
     path('calendar/', views.calendar, name='calendar'),
-    path(r'journal/', include('journal.urls')),
+    path('journal/', include('journal.urls')),
+    path('search/', views.SearchView.as_view(), name='search'),
 ]
