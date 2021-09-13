@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home</title>
+
+</head>
+
+<style>
+    h1 {text-align: center;}
+    img {
+        display: block;
+        margin-left: left;
+        margin-right: auto;
+    }
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+
+
+</style>
+<body>
+        <h1> Solirius Journal App </h1>
+        <img src="https://www.solirius.com/img/logo.png" alt="logo" width="200" height="70">
+    <article class="media">
+                <div class="media-content">
+                    <div class="content">
+                        <a href="http://127.0.0.1:8000/">Home</a>
+                    </div>
+                </div>
+        </article>
+        <article class="media">
+                <div class="media-content">
+                    <div class="content">
+                        <a href="http://127.0.0.1:8000/journal/resource_create/">Add new resource</a>
+                    </div>
+                </div>
+        </article>
+
+        <form method="GET" action="search/">
+            <div class="form-group">
+                <input type="text" class="form-control" name="q" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-light">Search</button>
+        </form>
+
+        <form action="{% url 'filter' %}" method="GET">
+            <label for="filter">Filter</label>
+            <label>
+                <select name="filter">
+                    <option value="testing" />Testing</option>
+                    <option value="developing" />Developing</option>
+                    <option value="database" />Database</option>
+                    <option value="project management" />Project Management</option>
+                    <input type="submit" value="Filter" />
+                </select>
+            </label>
+        </form>
+
+        <h2> Here is the resource searched for : </h2>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>URL</th>
+            </tr>
+            {% for resource in resources %}
+                <td>
+                    <ul>
+                        <li><a>{{ resource.name }}</a></li>
+                    </ul>
+                <th>
+                    <ul>
+                        <li><a>{{ resource.description_name }}</a></li>
+                    </ul>
+                <th>
+                    <ul>
+                        <li><a href="{{ resource.url }}/">{{ resource.url }}</a></li>
+                    </ul>
+                <th>
+
+                </th>
+            {% endfor %}
+
+</body>
+</html>
