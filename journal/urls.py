@@ -8,4 +8,5 @@ urlpatterns = [
     #path('resource_generic/', views.ResourceView.as_view(), name='resources'),
     path('resource_create/', views.ResourceCreate.as_view(), name='resource_create'),
     path('search_resources/', views.SearchView.as_view(), name='search'),
+    # path('delete_resource/', views.delete_resource, name='delete-id'),
 ]

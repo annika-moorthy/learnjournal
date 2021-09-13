@@ -21,6 +21,11 @@ def home(request):
     return HttpResponse(template.render(context, request))
 
 
+def delete_resource(request, resources_id):
+    resources = Resources.objects.get(pk=resources_id).delete()
+    return redirect('index')
+
+
 # def add_resource(request):
 #     resources = Resources.objects.all()
 #     if request.POST:

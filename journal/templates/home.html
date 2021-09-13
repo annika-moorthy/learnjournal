@@ -57,6 +57,7 @@ tr:nth-child(even) {
                 <th>Name</th>
                 <th>Description</th>
                 <th>URL</th>
+                <th>DELETE</th>
             </tr>
             {% for resource in resources %}
                 <tr>
@@ -72,8 +73,9 @@ tr:nth-child(even) {
                     <ul>
                         <li><a href="{{ resource.url }}/">{{ resource.url }}</a></li>
                     </ul>
-                </th>
+                    <th>
                     </td>
+                    <a href="{% url 'delete-event' resource.id %}" class="btn btn-outline-secondary btn-sm" role="button"> Delete</a>
                 </tr>
             {% endfor %}
         </table>
