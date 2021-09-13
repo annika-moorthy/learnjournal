@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <title>Home</title>
 </head>
 <style>
@@ -45,20 +46,23 @@ tr:nth-child(even) {
                         </div>
                     </div>
     </article>
-    <form method="GET" action="/search/">
+    <div class="container">
+      <h2>Your resources</h2>
+      <p>Type a resource namein the input field to search:</p>
+      <form method="GET" action="search/">
             <div class="form-group">
                 <input type="text" class="form-control" name="q" placeholder="Search">
             </div>
             <button type="submit" class="btn btn-light">Search</button>
-    </form>
-    <h2> Here is the resource searched for : </h2>
-    <table>
+        </form>
+      <br>
+        <table>
             <tr>
                 <th>Name</th>
                 <th>Description</th>
                 <th>URL</th>
+                <th>DELETE</th>
             </tr>
-
             {% for resource in resources %}
                 <tr>
                     <td>
@@ -74,7 +78,11 @@ tr:nth-child(even) {
                         <li><a href="{{ resource.url }}/">{{ resource.url }}</a></li>
                     </ul>
                     <th>
-    {% endfor %}
-    <table>
+                    </td>
+                    <a href="{% url 'delete-event' resource.id %}" class="btn btn-outline-secondary btn-sm" role="button"> Remove Resource</a>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
 </body>
 </html>

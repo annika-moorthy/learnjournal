@@ -58,7 +58,7 @@ class FilterView(ListView):
     context_object_name = 'resources'
 
     def get_queryset(self):
-        query = self.request.GET.get('filter')
+        query = self.request.GET.get('#')
         return Resources.objects.filter(name=query).order_by('name')
 
 
