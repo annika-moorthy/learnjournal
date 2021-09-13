@@ -26,21 +26,16 @@ def delete_resource(request, resources_id):
     return redirect('index')
 
 
-# def add_resource(request):
-#     resources = Resources.objects.all()
-#     if request.POST:
-#         resource_form = ResourceForm(request.POST)
-#         if resource_form.is_valid():
-#             resource = resource_form.save(commit=False)
-#             resource.save()
-#             return redirect('index')
+# def index(request):
+#     template = loader.get_template('filter.html')
+#     if request.GET.get('filter'):
+#         featured_filter = request.GET.get('filter')
+#         resources = Resources.objects.filter(topic=featured_filter)
 #     else:
-#         resource_form = ResourceForm()
-#     template = loader.get_template('home.html')
-#     context = {
-#         "resources": resources,
-#         "resource_form": resource_form
-#     }
+#         resources = Resources.objects.all()
+#
+#     context = {'resource': resources}
+#
 #     return HttpResponse(template.render(context, request))
 
 
@@ -55,6 +50,16 @@ class ResourceCreate(CreateView):
 
     def get_success_url(self):
         return reverse('index')
+
+
+class FilterView(ListView):
+    model = Resources
+    template_name = 'filter.html'
+    context_object_name = 'resources'
+
+    def get_queryset(self):
+        query = self.request.GET.get('filter')
+        return Resources.objects.filter(name=query).order_by('name')
 
 
 class SearchView(ListView):

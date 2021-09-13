@@ -11,12 +11,22 @@
         margin-left: left;
         margin-right: auto;
     }
-    ul {
-    }
-    div.static {
-        position: static;
-        border: 3px solid #73AD21;
-    }
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
 </style>
 <body>
     <h1> Solirius Journal App </h1>
@@ -42,9 +52,29 @@
             <button type="submit" class="btn btn-light">Search</button>
     </form>
     <h2> Here is the resource searched for : </h2>
-    {% for resource in resources %}
-            <li><a href="{{ resource.url }}/">{{ resource.name }}</a></li>
-    {% endfor %}
+    <table>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>URL</th>
+            </tr>
 
+            {% for resource in resources %}
+                <tr>
+                    <td>
+                        <ul>
+                            <li><a>{{ resource.name }}</a></li>
+                        </ul>
+                    <th>
+                    <ul>
+                        <li><a>{{ resource.description_name }}</a></li>
+                    </ul>
+                    <th>
+                    <ul>
+                        <li><a href="{{ resource.url }}/">{{ resource.url }}</a></li>
+                    </ul>
+                    <th>
+    {% endfor %}
+    <table>
 </body>
 </html>

@@ -20,9 +20,9 @@ from journal import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='index'),
-    #path('add/'), views.add_resource, name='add'),
     path('calendar/', views.calendar, name='calendar'),
     path('journal/', include('journal.urls')),
     path('search/', views.SearchView.as_view(), name='search'),
     path('delete_resource/<resources_id>', views.delete_resource, name='delete-event'),
+    path('filter/', views.FilterView.as_view(), name='filter'),
 ]

@@ -3,7 +3,7 @@ from django import forms
 
 TOPIC_CHOICES = [
     ('testing', 'Testing'),
-    ('developing', 'Developing'),
+    ('developing', 'Testing'),
     ('databases', 'Database'),
     ('project management', 'Project Management'),
 ]
