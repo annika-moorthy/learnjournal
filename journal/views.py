@@ -43,7 +43,7 @@ def home(request):
 class ResourceCreate(CreateView):
     model = Resources
     template_name = 'add_resource.html'
-    fields = ['name', 'description_name', 'url']
+    fields = ['name', 'description_name', 'url', 'topic']
 
     def get_queryset(self):
         return render(Resources.new_fields, {'form': ResourceForm})

@@ -58,38 +58,24 @@ tr:nth-child(even) {
                 <th>Description</th>
                 <th>URL</th>
             </tr>
-            <tr>
-                <td>
-                    <ul>
-                        {% for resource in resources %}
+            {% for resource in resources %}
+                <tr>
+                    <td>
+                        <ul>
                             <li><a>{{ resource.name }}</a></li>
-                        {% endfor %}
-                    </ul>
-                </td>
-
-                <td>{% if resources %}
+                        </ul>
+                    <th>
                     <ul>
-                        {% for resource in resources %}
-                            <li><a>{{ resource.description_name }}</a></li>
-                        {% endfor %}
+                        <li><a>{{ resource.description_name }}</a></li>
                     </ul>
-                {% else %}
-                    <p>No resources are available.</p>
-                {% endif %}
-                </td>
-
-                <td>{% if resources %}
+                    <th>
                     <ul>
-                        {% for resource in resources %}
-                            <li><a href="{{ resource.url }}/">{{ resource.url }}</a></li>
-                        {% endfor %}
+                        <li><a href="{{ resource.url }}/">{{ resource.url }}</a></li>
                     </ul>
-                {% else %}
-                    <p>No resources are available.</p>
-                {% endif %}</td>
-            </tr>
-
-
+                </th>
+                    </td>
+                </tr>
+            {% endfor %}
         </table>
 </body>
 </html>

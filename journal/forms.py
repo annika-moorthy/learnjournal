@@ -6,4 +6,4 @@ from journal.models import Resources
 class ResourceForm(ModelForm):
     class Meta:
         model = Resources
-        fields = ['name', 'description_name', 'url']
+        fields = ['name', 'description_name', 'url', 'topic']
