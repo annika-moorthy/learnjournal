@@ -1,9 +1,9 @@
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.template import loader
 from django.urls import reverse
-from django.views import generic
-from django.views.generic import CreateView, UpdateView, ListView
+
+from django.views.generic import CreateView, ListView
 
 from journal.models import Resources
 from journal.forms import ResourceForm
@@ -24,19 +24,6 @@ def home(request):
 def delete_resource(request, resources_id):
     resources = Resources.objects.get(pk=resources_id).delete()
     return redirect('index')
-
-
-# def index(request):
-#     template = loader.get_template('filter.html')
-#     if request.GET.get('filter'):
-#         featured_filter = request.GET.get('filter')
-#         resources = Resources.objects.filter(topic=featured_filter)
-#     else:
-#         resources = Resources.objects.all()
-#
-#     context = {'resource': resources}
-#
-#     return HttpResponse(template.render(context, request))
 
 
 # the resource_create page to create a new resource

@@ -2,7 +2,8 @@ from django.test import TestCase
 
 # Create your tests here.
 from journal.models import Resources
-from journal.views import delete_resource
+from journal.views import delete_resource, ResourceCreate
+from django.test import RequestFactory
 
 
 class ObjectTests(TestCase):
@@ -19,6 +20,8 @@ class ObjectTests(TestCase):
             url='https://www.python.org/',
             topic='Developing'
         )
+        self.factory = RequestFactory()
+        self.res_id = Resources.id
 
     def test_create_resource(self):
         google = Resources.objects.get(name="Google")
@@ -45,9 +48,13 @@ class ObjectTests(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_resources_delete(self):
-        request = self.client.post('/delete_resource/' + str(self.resources_id))
-        response = delete_resource(request, self.resources_id)
-        self.assertEqual(response.status_code, 302)
+        request = self.factory.post('/delete_resource/' + str(self.res_id))
+        response = delete_resource(request, self.res_id)
+        self.assertEqual(response.status_code, 200)
         self.assertEqual(Resources.objects.filter(name='Google').count(), 0)
 
-
+    def test_add_resources(self):
+        request = self.factory.get('/resource_create/')
+        response = ResourceCreate.as_view()(request)
+        self.assertEqual(response.status_code, 200)
+        self.assertEquals(Resources.objects.filter(name='Google').count(), 1)
