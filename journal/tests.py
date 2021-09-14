@@ -24,6 +24,7 @@ class ObjectTests(TestCase):
     def test_create_resource(self):
         google = Resources.objects.get(name="Google")
         python = Resources.objects.get(name="Python")
-        self.assertEqual(google.description_name())
-        self.assertEqual(python.topic())
+        print(google)
+        self.assertEqual(str(google.description_name()), 'Programming Language')
+        self.assertEqual(python.topic(), 'Developing')
 
