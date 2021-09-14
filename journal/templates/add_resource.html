@@ -26,6 +26,7 @@
 </style>
 <body>
         <h1> Solirius Journal App </h1>
+        <div class="container">
         <img src="https://www.solirius.com/img/logo.png" alt="logo" width="200" height="70">
         <article class="media">
                 <div class="media-content">
@@ -34,10 +35,11 @@
                     </div>
                 </div>
         </article>
-<form method="POST">
-    {% csrf_token %}
-    {{  form.as_p}}
-<input type = "submit" value="Save">
-</form>
+        <form method="POST">
+            {% csrf_token %}
+            {{  form.as_p}}
+        <input type = "submit" value="Save">
+        </form>
+        </div>
 </body>
 </html>

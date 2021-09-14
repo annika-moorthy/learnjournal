@@ -37,14 +37,8 @@ tr:nth-child(even) {
 </style>
 <body>
         <h1> Solirius Journal App </h1>
-        <img src="https://www.solirius.com/img/logo.png" alt="logo" width="200" height="70">
-        <article class="media">
-                <div class="media-content">
-                    <div class="content">
-                        <a href="http://127.0.0.1:8000/journal/resource_create/">Add new resource</a>
-                    </div>
-                </div>
-        </article>
+
+
 
 {#        <form methods="GET" action="{% url 'filter' %}">#}
 {#            <div class="dropdown">#}
@@ -63,6 +57,14 @@ tr:nth-child(even) {
 {#        </form>#}
 
     <div class="container">
+    <img src="https://www.solirius.com/img/logo.png" alt="logo" width="200" height="70">
+    <article class="media">
+            <div class="media-content">
+                <div class="content">
+                    <a href="http://127.0.0.1:8000/journal/resource_create/">Add new resource</a>
+                </div>
+            </div>
+    </article>
       <h2>Your resources</h2>
       <p>Type a resource name in the input field to search:</p>
       <form method="GET" action="search/">
