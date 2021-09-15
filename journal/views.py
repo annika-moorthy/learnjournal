@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.template import loader
 from django.urls import reverse
 
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, ListView, UpdateView
 
 from journal.models import Resources
 from journal.forms import ResourceForm
@@ -60,6 +60,14 @@ class SearchView(ListView):
         query = self.request.GET.get('q')
         return Resources.objects.filter(name__icontains=query).order_by('name')
 
+
+class ResourceUpdateView(UpdateView):
+    model = Resources
+    fields = '__all__'
+    template_name = 'Resource_update_form.html'
+
+    def get_success_url(self):
+        return reverse('index')
 
 def calendar(request):
     context = 'Calendar'

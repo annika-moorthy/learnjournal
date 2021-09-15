@@ -24,5 +24,6 @@ urlpatterns = [
     path('journal/', include('journal.urls')),
     path('search/', views.SearchView.as_view(), name='search'),
     path('delete_resource/<resources_id>', views.delete_resource, name='delete-event'),
+    path('updateresource/<int:pk>', views.ResourceUpdateView.as_view(), name='Resource_update_form'),
     path('filter/', views.FilterView.as_view(), name='filter'),
 ]

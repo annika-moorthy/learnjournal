@@ -3,7 +3,7 @@ from django.db import models
 
 TOPIC_CHOICES = [
     ('testing', 'Testing'),
-    ('developing', 'Testing'),
+    ('developing', 'Developing'),
     ('databases', 'Database'),
     ('project management', 'Project Management'),
 ]
