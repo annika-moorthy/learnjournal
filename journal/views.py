@@ -26,7 +26,7 @@ def delete_resource(request, resources_id):
     return redirect('index')
 
 
-# the resource_create page to create a new resource
+# creates a new resource
 class ResourceCreate(CreateView):
     model = Resources
     template_name = 'add_resource.html'
@@ -39,6 +39,7 @@ class ResourceCreate(CreateView):
         return reverse('index')
 
 
+# filters through resources by topic
 class FilterView(ListView):
     model = Resources
     template_name = 'filter.html'
@@ -49,6 +50,7 @@ class FilterView(ListView):
         return Resources.objects.filter(name=query).order_by('name')
 
 
+# search existing resources
 class SearchView(ListView):
     model = Resources
     template_name = 'search.html'
