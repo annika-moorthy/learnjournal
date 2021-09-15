@@ -1,8 +1,7 @@
 from django.test import TestCase
-
 # Create your tests here.
 from journal.models import Resources
-from journal.views import delete_resource, ResourceCreate
+from journal.views import delete_resource, ResourceCreate, ResourceUpdateView
 from django.test import RequestFactory
 
 
@@ -10,18 +9,19 @@ class ObjectTests(TestCase):
 
     def setUp(self):
         Resources.objects.create(
+            id=1,
             name='Google',
             description_name='Social Media platform',
             url='https://www.google.com')
 
         Resources.objects.create(
+            id=2,
             name='Python',
             description_name='Programming Language',
             url='https://www.python.org/',
             topic='Developing'
         )
         self.factory = RequestFactory()
-        self.res_id = Resources.id
 
     def test_create_resource(self):
         google = Resources.objects.get(name="Google")
@@ -48,10 +48,18 @@ class ObjectTests(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_resources_delete(self):
-        request = self.factory.post('/delete_resource/' + str(self.res_id))
-        response = delete_resource(request, self.res_id)
-        self.assertEqual(response.status_code, 200)
+        res_id = Resources.objects.get(name='Google').id
+        request = self.factory.get('/delete_resource/' + str(res_id))
+        response = delete_resource(request, res_id)
+        self.assertEqual(response.status_code, 302)
         self.assertEqual(Resources.objects.filter(name='Google').count(), 0)
+
+    def test_edit_resources(self):
+        res_id = Resources.objects.get(name='Python').id
+        request = self.factory.get('/updateresource/' + str(res_id))
+        response = ResourceCreate.as_view()(request)
+        self.assertEqual(response.status_code, 200)
+        self.assertEquals(Resources.objects.filter(name='Python').count(), 1)
 
     def test_add_resources(self):
         request = self.factory.get('/resource_create/')
