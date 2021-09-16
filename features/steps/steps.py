@@ -35,12 +35,4 @@ def should_see(context, text):
 def step_impl(context):
     context.execute_steps('')
 
-# @when('I add a new resource')
-# def step_impl(context):
-#     context.execute_steps(u'''
-#         When I press "Add new resource"
-#         And I fill in "name" with "test"
-#         And I fill in "Description Name" with "BDD TEST"
-#         And I fill in "Url" with "BDD TEST"
-#         And I press "Submit"
-#     ''')
+

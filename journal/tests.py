@@ -1,7 +1,7 @@
 from django.test import TestCase
 # Create your tests here.
 from journal.models import Resources
-from journal.views import delete_resource, ResourceCreate, ResourceUpdateView
+from journal.views import delete_resource, ResourceCreate, ResourceUpdateView, SearchView
 from django.test import RequestFactory
 
 
@@ -57,12 +57,18 @@ class ObjectTests(TestCase):
     def test_edit_resources(self):
         res_id = Resources.objects.get(name='Python').id
         request = self.factory.get('/updateresource/' + str(res_id))
-        response = ResourceCreate.as_view()(request)
+        response = ResourceUpdateView.as_view()(request)
         self.assertEqual(response.status_code, 200)
-        self.assertEquals(Resources.objects.filter(name='Python').count(), 1)
 
     def test_add_resources(self):
         request = self.factory.get('/resource_create/')
         response = ResourceCreate.as_view()(request)
         self.assertEqual(response.status_code, 200)
         self.assertEquals(Resources.objects.filter(name='Google').count(), 1)
+
+    # def test_search_resources(self):
+    #     name = Resources.objects.get(name='Python').name
+    #     request = self.factory.get('/search/' + name)
+    #     response = SearchView.as_view()(request)
+    #     self.assertEqual(response.status_code, 200)
+    #     # self.assertEquals(Resources.objects.filter(name='Google').count(), 1)

@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.template import loader
 from django.urls import reverse
 
@@ -68,6 +68,9 @@ class ResourceUpdateView(UpdateView):
 
     def get_success_url(self):
         return reverse('index')
+
+
+
 
 def calendar(request):
     context = 'Calendar'
